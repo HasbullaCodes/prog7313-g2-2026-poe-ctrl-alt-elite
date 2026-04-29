@@ -93,6 +93,12 @@ class HomeActivity : AppCompatActivity() {
         val tvFoodLastWeek = findViewById<TextView>(R.id.tvFoodLastWeek)
         val recentContainer = findViewById<LinearLayout>(R.id.recentTransactionsContainer)
 
+        //Code Attribution
+        //Title: Kotlin Coroutines on Android
+        //Author: Android Developers
+        //Date: 2024
+        //Version: Latest
+        //Availability: https://developer.android.com/kotlin/coroutines
         lifecycleScope.launch {
             val expenses = db.expenseDao().getAllExpensesWithCategory()
             val totalExpense = expenses.sumOf { it.amount }

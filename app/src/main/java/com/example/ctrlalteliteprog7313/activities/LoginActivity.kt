@@ -34,6 +34,12 @@ class LoginActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show()
             } else {
+                //Code Attribution
+                //Title: Kotlin Coroutines on Android
+                //Author: Android Developers
+                //Date: 2024
+                //Version: Latest
+                //Availability: https://developer.android.com/kotlin/coroutines
                 lifecycleScope.launch {
                     val user = db.userDao().loginUser(email, password)
 

@@ -19,25 +19,23 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
-// UI Components
+
+        // UI Components
         val btnGoLogin = findViewById<Button>(R.id.btnGoLogin)
         val btnGoSignUp = findViewById<Button>(R.id.btnGoSignUp)
         val tvForgotPassword = findViewById<TextView>(R.id.tvForgotPassword)
-        /**
-         * Navigate to Login screen
-         */
+
+        // Navigate to Login screen
         btnGoLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-        /**
-         * Navigate to Registration screen
-         */
+
+        //Navigate to Registration screen
         btnGoSignUp.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
-        /**
-         * Navigate to Forgot Password
-         */
+
+        //Navigate to Forgot Password
         tvForgotPassword.setOnClickListener {
             startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }

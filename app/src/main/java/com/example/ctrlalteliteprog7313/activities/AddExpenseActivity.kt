@@ -134,6 +134,13 @@ class AddExpenseActivity : AppCompatActivity() {
         }
     }
 
+    //Code Attribution
+    //Title: DatePickerDialog Documentation
+    //Author: Android Developers
+    //Date: 2024
+    //Version: Latest
+    //Availability: https://developer.android.com/reference/android/app/DatePickerDialog
+
     // DATE PICKER FUNCTION
     private fun showDatePicker(editText: EditText) {
         val calendar = Calendar.getInstance()
@@ -154,6 +161,13 @@ class AddExpenseActivity : AppCompatActivity() {
 
         dialog.show()
     }
+
+    //Code Attribution
+    //Title: Taking Photos Simply (Camera Intent)
+    //Author: Android Developers
+    //Date: 2024
+    //Version: Latest
+    //Availability: https://developer.android.com/media/camera/camera-intents
 
     // IMAGE RESULT HANDLER
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

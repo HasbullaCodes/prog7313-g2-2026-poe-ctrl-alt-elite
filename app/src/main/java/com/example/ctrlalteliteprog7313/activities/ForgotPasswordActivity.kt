@@ -43,6 +43,12 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            //Code Attribution
+            //Title: Kotlin Coroutines on Android
+            //Author: Android Developers
+            //Date: 2024
+            //Version: Latest
+            //Availability: https://developer.android.com/kotlin/coroutines
             lifecycleScope.launch {
                 val user = db.userDao().getUserByEmail(email)
 

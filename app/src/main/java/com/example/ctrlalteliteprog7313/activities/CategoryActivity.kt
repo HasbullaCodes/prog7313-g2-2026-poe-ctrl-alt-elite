@@ -106,6 +106,13 @@ class CategoryActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            //Code Attribution
+            //Title: Kotlin Coroutines on Android
+            //Author: Android Developers
+            //Date: 2024
+            //Version: Latest
+            //Availability: https://developer.android.com/kotlin/coroutines
+
             // Insert category into database
             lifecycleScope.launch {
                 db.categoryDao().insertCategory(CategoryEntity(name = name))

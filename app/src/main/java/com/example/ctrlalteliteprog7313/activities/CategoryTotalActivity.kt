@@ -30,6 +30,12 @@ class CategoryTotalActivity : AppCompatActivity() {
         val btnCalc = findViewById<Button>(R.id.btnCalculate)
         val pieChart = findViewById<PieChart>(R.id.pieChart)
 
+        //Code Attribution
+        //Title: DatePickerDialog Documentation
+        //Author: Android Developers
+        //Date: 2024
+        //Version: Latest
+        //Availability: https://developer.android.com/reference/android/app/DatePickerDialog
         etStart.setOnClickListener {
             showDatePicker(etStart, true)
         }
@@ -46,6 +52,7 @@ class CategoryTotalActivity : AppCompatActivity() {
         val db = AppDatabase.getDatabase(this)
 
         btnCalc.setOnClickListener {
+
             val start = startDateDb
             val end = endDateDb
 
@@ -54,14 +61,28 @@ class CategoryTotalActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            //Code Attribution
+            //Title: Kotlin Coroutines on Android
+            //Author: Android Developers
+            //Date: 2024
+            //Version: Latest
+            //Availability: https://developer.android.com/kotlin/coroutines
             lifecycleScope.launch {
+
                 val totals = db.expenseDao().getTotalsByCategory(start, end)
 
                 val entries = totals.map {
                     PieEntry(it.totalAmount.toFloat(), it.categoryName)
                 }
 
+                //Code Attribution
+                //Title: MPAndroidChart Library
+                //Author: Philipp Jahoda
+                //Date: 2023
+                //Version: 3.1.0
+                //Availability: https://github.com/PhilJay/MPAndroidChart
                 val dataSet = PieDataSet(entries, "")
+
                 dataSet.setColors(
                     Color.parseColor("#7DB8FF"),
                     Color.parseColor("#A5D6A7"),
@@ -77,9 +98,11 @@ class CategoryTotalActivity : AppCompatActivity() {
                 dataSet.selectionShift = 10f
 
                 val pieData = PieData(dataSet)
+
                 pieData.setValueFormatter(PercentFormatter(pieChart))
 
                 runOnUiThread {
+
                     if (totals.isEmpty()) {
                         Toast.makeText(
                             this@CategoryTotalActivity,
@@ -141,6 +164,7 @@ class CategoryTotalActivity : AppCompatActivity() {
         val dialog = DatePickerDialog(
             this,
             { _, year, month, dayOfMonth ->
+
                 val displayDate = "%02d/%02d/%04d".format(dayOfMonth, month + 1, year)
                 val dbDate = "%04d-%02d-%02d".format(year, month + 1, dayOfMonth)
 
@@ -161,6 +185,7 @@ class CategoryTotalActivity : AppCompatActivity() {
     }
 
     private fun setActiveNav(activeNavId: Int) {
+
         val navHome = findViewById<LinearLayout>(R.id.navHome)
         val navAnalysis = findViewById<LinearLayout>(R.id.navAnalysis)
         val navTransactions = findViewById<LinearLayout>(R.id.navTransactions)

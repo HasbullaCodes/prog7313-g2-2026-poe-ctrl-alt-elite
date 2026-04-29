@@ -55,6 +55,13 @@ class RegisterActivity : AppCompatActivity() {
             etEmail.error = null
             etPassword.error = null
 
+            //Code Attribution
+            //Title: Validate input as the user types
+            //Author: Android Developers
+            //Date: 2024
+            //Version: Latest
+            //Availability: https://developer.android.com/develop/ui/compose/quick-guides/content/validate-input
+
             if (name.isEmpty()) {
                 etName.error = "Enter your full name"
                 isValid = false
@@ -87,6 +94,14 @@ class RegisterActivity : AppCompatActivity() {
                     email = email,
                     password = password
                 )
+
+                //Code Attribution
+                //Title: Kotlin Coroutines on Android
+                //Author: Android Developers
+                //Date: 2024
+                //Version: Latest
+                //Availability: https://developer.android.com/kotlin/coroutines
+
                 // Run database operation on background thread
                 lifecycleScope.launch {
                     // Insert user into database

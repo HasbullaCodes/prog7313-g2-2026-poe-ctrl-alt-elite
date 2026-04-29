@@ -6,14 +6,30 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ctrlalteliteprog7313.R
 
+    //Code Attribution
+    //Title: Save Key-Value Data (SharedPreferences)
+    //Author: Android Developers
+    //Date: 2024
+    //Version: Latest
+    //Availability: https://developer.android.com/training/data-storage/shared-preferences
+
+    //Code Attribution
+    //Title: Android Intents and Activity Navigation
+    //Author: Android Developers
+    //Date: 2024
+    //Version: Latest
+    //Availability: https://developer.android.com/guide/components/intents-filters
+
 class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        // Highlight active bottom navigation item
         setActiveNav(R.id.navProfile)
 
+        // Link UI components
         val tvBack = findViewById<TextView>(R.id.tvBack)
         val tvProfileName = findViewById<TextView>(R.id.tvProfileName)
         val tvProfileEmail = findViewById<TextView>(R.id.tvProfileEmail)
@@ -34,14 +50,18 @@ class ProfileActivity : AppCompatActivity() {
         val navCategories = findViewById<LinearLayout>(R.id.navCategories)
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
 
+        // Retrieve logged-in user details passed via Intent
         val name = intent.getStringExtra("userName")
         val email = intent.getStringExtra("userEmail")
 
+        // Display user details on screen
         tvProfileName.text = name ?: "User"
         tvProfileEmail.text = email ?: "No email"
 
+        // Access SharedPreferences for storing goals locally
         val prefs = getSharedPreferences("goal_prefs", MODE_PRIVATE)
 
+        // Load saved goals (if any) and display them
         val savedMin = prefs.getString("minGoal", "")
         val savedMax = prefs.getString("maxGoal", "")
 
@@ -51,13 +71,18 @@ class ProfileActivity : AppCompatActivity() {
             tvSavedGoals.text = "No goals saved yet"
         }
 
+        // Save goals when button is clicked
         btnSaveGoals.setOnClickListener {
+
+            // Get user input
             val minGoal = etMinGoal.text.toString().trim()
             val maxGoal = etMaxGoal.text.toString().trim()
 
+            // Convert to numeric values
             val min = minGoal.toDoubleOrNull()
             val max = maxGoal.toDoubleOrNull()
 
+            // Validate inputs
             if (min == null || max == null) {
                 Toast.makeText(this, "Enter valid goal amounts", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -73,17 +98,21 @@ class ProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Save values to SharedPreferences
             prefs.edit()
                 .putString("minGoal", minGoal)
                 .putString("maxGoal", maxGoal)
                 .apply()
 
+            // Display saved goals to user
             tvSavedGoals.text = "Saved Goal: Min R$minGoal | Max R$maxGoal"
 
+            // Clear input fields after saving
             etMinGoal.text.clear()
             etMaxGoal.text.clear()
         }
 
+        // Navigate back to Home screen
         tvBack.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra("userName", name)
@@ -93,6 +122,7 @@ class ProfileActivity : AppCompatActivity() {
             finish()
         }
 
+        // Placeholder profile actions
         btnEditProfile.setOnClickListener {
             Toast.makeText(this, "Edit profile coming soon", Toast.LENGTH_SHORT).show()
         }
@@ -105,12 +135,14 @@ class ProfileActivity : AppCompatActivity() {
             Toast.makeText(this, "Help coming soon", Toast.LENGTH_SHORT).show()
         }
 
+        // Logout user and return to welcome screen
         btnLogout.setOnClickListener {
             val intent = Intent(this, WelcomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
 
+        // Bottom navigation actions
         navHome.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra("userName", name)
@@ -130,10 +162,13 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this, CategoryActivity::class.java))
         }
 
+        // Current page (no action needed)
         navProfile.setOnClickListener { }
     }
 
+    // Handles active bottom navigation highlight
     private fun setActiveNav(activeNavId: Int) {
+
         val navHome = findViewById<LinearLayout>(R.id.navHome)
         val navAnalysis = findViewById<LinearLayout>(R.id.navAnalysis)
         val navTransactions = findViewById<LinearLayout>(R.id.navTransactions)
@@ -142,10 +177,12 @@ class ProfileActivity : AppCompatActivity() {
 
         val navItems = listOf(navHome, navAnalysis, navTransactions, navCategories, navProfile)
 
+        // Reset backgrounds
         navItems.forEach {
             it.background = null
         }
 
+        // Highlight active item
         findViewById<LinearLayout>(activeNavId)
             .setBackgroundResource(R.drawable.nav_active_bg)
     }
