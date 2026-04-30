@@ -47,6 +47,12 @@ The app helps users manage their finances by tracking expenses, categorising spe
 
 ---
 
+## 🎥 Demo Video
+
+[![Watch the demo](https://img.youtube.com/vi/rKNQk9hDEK0/0.jpg)](https://youtu.be/rKNQk9hDEK0)
+
+---
+
 ## 🛠️ Technologies Used
 
 - **Kotlin**
